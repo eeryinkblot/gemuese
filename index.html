@@ -30,41 +30,25 @@
         </style>
     </head>
     <body>
-        <table>
-            <thead>
-                <tr>
-                    <th>Gemüse</th>
-                    <th>Jan</th>
-                    <th>Feb</th>
-                    <th>März</th>
-                    <th>April</th>
-                    <th>Mai</th>
-                    <th>Juni</th>
-                    <th>Juli</th>
-                    <th>Aug</th>
-                    <th>Sept</th>
-                    <th>Okt</th>
-                    <th>Nov</th>
-                    <th>Dez</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Blumenkohl</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="blau"></td>
-                    <td class="blau"></td>
-                    <td class="blau"></td>
-                    <td class="blau"></td>
-                    <td class="blau"></td>
-                    <td class="blau"></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/vanjs-org/van/public/van-1.2.8.nomodule.min.js"></script>
+        <script>
+            const {table, tbody, thead, td, th, tr} = van.tags;
+
+            const Table = ({head, data}) => table(
+                head ? thead(tr(head.map(h => th(h)))) : [],
+                tbody(data.map(row => tr(
+                    row.map(col => col === 'b' ? td({class: 'blau'}) : td(col)),
+                ))),
+            )
+
+            van.add(document.body, Table({
+                head: ["Gemüse", "Jan", "Feb", "März", "April", "Mai", "Juni", "Juli", "Aug", "Sept", "Okt", "Nov", "Dez"],
+                data: [
+                    ["Blumenkohl", "", "", "", "", "b", "b", "b", "b", "b", "b", "", ""],
+                    ["grüne Bohnen", "", "", "", "", "", "", "b", "b", "b", "b", "", ""],
+                    ["Brokkoli", "", "", "", "", "", "b", "b", "b", "b", "b", "", ""],
+                ]
+            }))
+        </script>
     </body>
 </html>
