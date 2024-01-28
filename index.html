@@ -40,7 +40,11 @@
             const Table = ({head, data}) => table(
                 head ? thead(tr(head.map(h => th(h)))) : [],
                 tbody(data.map(row => tr(
-                    row.map(col => col === 'b' ? td({class: 'blau'}) : td(col)),
+                    row.map(col => {
+                        return col === 'b' ? td({class: 'blau'})
+                         : col === 'g' ? td({class: 'gelb'})
+                         : td(col)
+                    }),
                 ))),
             )
 
@@ -50,6 +54,7 @@
                     ["Blumenkohl", "", "", "", "", "b", "b", "b", "b", "b", "b", "", ""],
                     ["grüne Bohnen", "", "", "", "", "", "", "b", "b", "b", "b", "", ""],
                     ["Brokkoli", "", "", "", "", "", "b", "b", "b", "b", "b", "", ""],
+                    ["Butterrüben", "g", "g", "", "", "", "", "", "", "", "b", "b", "b"],
                 ]
             }))
         </script>
